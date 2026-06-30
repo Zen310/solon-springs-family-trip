@@ -363,63 +363,6 @@
       cursor: zoom-out;
     }
 
-    .map-lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      place-items: center;
-      background: #171f1c;
-      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    }
-
-    .map-lightbox.is-open {
-      display: grid;
-    }
-
-    .map-lightbox img {
-      width: 100vw;
-      height: 100svh;
-      max-width: 100vw;
-      max-height: 100svh;
-      object-fit: contain;
-      display: block;
-      touch-action: pinch-zoom;
-    }
-
-    .map-lightbox-close,
-    .map-lightbox-note {
-      position: fixed;
-      z-index: 101;
-      border: 2px solid rgba(255, 248, 232, .7);
-      border-radius: 8px;
-      background: rgba(23, 31, 28, .82);
-      color: #fff8e8;
-      backdrop-filter: blur(8px);
-    }
-
-    .map-lightbox-close {
-      top: max(12px, env(safe-area-inset-top));
-      right: max(12px, env(safe-area-inset-right));
-      min-width: 48px;
-      min-height: 44px;
-      font: inherit;
-      font-size: 18px;
-      font-weight: 950;
-      cursor: pointer;
-    }
-
-    .map-lightbox-note {
-      left: 50%;
-      bottom: max(12px, env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      width: min(92vw, 520px);
-      padding: 9px 12px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 850;
-    }
-
     .two-col {
       display: grid;
       grid-template-columns: minmax(0, .86fr) minmax(320px, 1.14fr);
@@ -1305,15 +1248,6 @@
       }
     }
 
-    @media (max-width: 700px) and (orientation: portrait) {
-      .map-lightbox img {
-        width: 100svh;
-        height: 100vw;
-        max-width: none;
-        max-height: none;
-        transform: rotate(90deg);
-      }
-    }
   </style>
 </head>
 <body>
@@ -1363,7 +1297,7 @@
       <div class="map-head">
         <div>
           <span class="kicker">Full Route Poster</span>
-          <p>Tap the map for full-screen poster mode. Turn the phone sideways for the best read.</p>
+          <p>Tap the map for full-screen poster mode. If landscape gets browser bars, keep the phone upright.</p>
         </div>
         <div class="map-tools">
           <a class="map-zoom" href="map-full.html">Open full screen</a>
@@ -1578,21 +1512,12 @@
     </section>
   </main>
 
-  <div class="map-lightbox" id="mapLightbox" role="dialog" aria-modal="true" aria-label="Full-screen Solon Springs route map">
-    <button class="map-lightbox-close" type="button" id="closeMap">x</button>
-    <img src="favorite-03-16x9-current-best.jpg" alt="Full-screen illustrated Solon Springs route map.">
-    <div class="map-lightbox-note">Full-screen map. Rotate the phone sideways for the cleanest view.</div>
-  </div>
-
   <script>
     const slides = Array.from(document.querySelectorAll("main .slide"));
     const tabs = Array.from(document.querySelectorAll(".tabs a"));
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
     const progress = document.getElementById("progress");
-    const routeMapImage = document.getElementById("routeMapImage");
-    const mapLightbox = document.getElementById("mapLightbox");
-    const closeMap = document.getElementById("closeMap");
     let activeIndex = 0;
 
     function setActive(index) {
@@ -1605,22 +1530,6 @@
       document.body.classList.toggle("map-active", id === "#map");
     }
 
-    function showMap() {
-      mapLightbox.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      if (mapLightbox.requestFullscreen) {
-        mapLightbox.requestFullscreen().catch(() => {});
-      }
-    }
-
-    function hideMap() {
-      mapLightbox.classList.remove("is-open");
-      document.body.style.overflow = "";
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
-      }
-    }
-
     function go(delta) {
       const target = slides[Math.max(0, Math.min(slides.length - 1, activeIndex + delta))];
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1628,17 +1537,9 @@
 
     prev.addEventListener("click", () => go(-1));
     next.addEventListener("click", () => go(1));
-    routeMapImage.addEventListener("click", event => {
-      if (event.metaKey || event.ctrlKey) return;
-    });
-    closeMap.addEventListener("click", hideMap);
-    mapLightbox.addEventListener("click", event => {
-      if (event.target === mapLightbox) hideMap();
-    });
     document.addEventListener("keydown", event => {
       if (event.key === "ArrowRight") go(1);
       if (event.key === "ArrowLeft") go(-1);
-      if (event.key === "Escape") hideMap();
     });
 
     const observer = new IntersectionObserver(entries => {
