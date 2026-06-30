@@ -11,7 +11,7 @@
     body {
       margin: 0;
       width: 100%;
-      min-height: 100svh;
+      min-height: 100dvh;
       overflow: hidden;
       background: #171f1c;
       color: #fff8e8;
@@ -20,7 +20,7 @@
 
     .stage {
       width: 100vw;
-      height: 100svh;
+      height: 100dvh;
       display: grid;
       place-items: center;
       padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
@@ -31,7 +31,7 @@
 
     img {
       width: 100vw;
-      height: 100svh;
+      height: 100dvh;
       object-fit: contain;
       display: block;
       touch-action: pinch-zoom;
@@ -87,6 +87,31 @@
     }
 
     @media (orientation: landscape) {
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .stage {
+        height: auto;
+        min-height: 100dvh;
+        display: block;
+        overflow: visible;
+        padding: 0;
+      }
+
+      img {
+        width: 100vw;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        object-fit: fill;
+      }
+
+      .back {
+        opacity: .72;
+      }
+
       .hint { display: none; }
     }
   </style>
