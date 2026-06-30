@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Solon Springs">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Solon Springs Route Map</title>
   <style>
     * { box-sizing: border-box; }
@@ -11,27 +14,32 @@
     body {
       margin: 0;
       width: 100%;
-      min-height: 100dvh;
-      overflow: hidden;
+      min-height: 100%;
       background: #171f1c;
       color: #fff8e8;
       font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
+    body {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .stage {
-      width: 100vw;
-      height: 100dvh;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
       display: grid;
       place-items: center;
-      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      padding: 0;
       background: #171f1c;
       position: relative;
-      overflow: hidden;
+      overflow: auto;
     }
 
     img {
       width: 100vw;
-      height: 100dvh;
+      height: auto;
       object-fit: contain;
       display: block;
       touch-action: pinch-zoom;
@@ -40,7 +48,8 @@
     }
 
     .back,
-    .hint {
+    .hint,
+    .install {
       position: fixed;
       z-index: 2;
       border: 2px solid rgba(255, 248, 232, .72);
@@ -73,7 +82,23 @@
       font-weight: 850;
     }
 
+    .install {
+      right: max(12px, env(safe-area-inset-right));
+      bottom: max(12px, env(safe-area-inset-bottom));
+      max-width: min(56vw, 360px);
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.28;
+      opacity: .9;
+    }
+
     @media (max-width: 700px) and (orientation: portrait) {
+      body,
+      .stage {
+        overflow: hidden;
+      }
+
       img {
         position: absolute;
         top: 50%;
@@ -87,14 +112,10 @@
     }
 
     @media (orientation: landscape) {
-      html,
-      body {
-        overflow: auto;
-      }
-
       .stage {
         height: auto;
-        min-height: 100dvh;
+        min-height: 100vh;
+        min-height: 100svh;
         display: block;
         overflow: visible;
         padding: 0;
@@ -109,10 +130,29 @@
       }
 
       .back {
-        opacity: .72;
+        display: none;
       }
 
-      .hint { display: none; }
+      .hint {
+        display: none;
+      }
+
+      .install {
+        left: 10px;
+        right: auto;
+        bottom: 10px;
+        max-width: 44vw;
+        font-size: 11px;
+        opacity: .76;
+      }
+    }
+
+    @media (display-mode: fullscreen), (display-mode: standalone) {
+      .install { display: none; }
+
+      .back {
+        opacity: .62;
+      }
     }
   </style>
 </head>
@@ -122,5 +162,6 @@
     <img src="favorite-03-16x9-current-best.jpg" alt="Full-screen illustrated Solon Springs Run route map.">
   </main>
   <div class="hint">Best phone view: keep it upright. The map is rotated here so it fills the screen.</div>
+  <div class="install">True no-browser-bar view: Share button -> Add to Home Screen, then open from the new icon.</div>
 </body>
 </html>

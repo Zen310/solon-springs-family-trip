@@ -1,0 +1,18 @@
+{
+  "name": "Solon Springs Family Trip",
+  "short_name": "Solon Springs",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "background_color": "#171f1c",
+  "theme_color": "#171f1c",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favorite-03-16x9-current-best.jpg",
+      "sizes": "1672x941",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
