@@ -1,0 +1,1492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solon Springs Family Trip Deck</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --cream: #f7ecd0;
+      --paper: #fff6df;
+      --map: #e7c981;
+      --ink: #21312c;
+      --muted: #665f47;
+      --green: #244d3d;
+      --pine: #173c33;
+      --lake: #2d7185;
+      --sky: #b8d8d2;
+      --red: #a8422b;
+      --rust: #be6132;
+      --gold: #d89b2c;
+      --line: rgba(33, 49, 44, .18);
+      --shadow: 0 18px 44px rgba(36, 30, 18, .18);
+      --nav-h: 70px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 14px);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      color: var(--ink);
+      background: #e8d2a0;
+      font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 40;
+      height: 5px;
+      width: 0;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--lake));
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      min-height: var(--nav-h);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px max(12px, env(safe-area-inset-left)) 10px max(12px, env(safe-area-inset-right));
+      background: rgba(255, 246, 223, .96);
+      border-bottom: 3px solid rgba(33, 49, 44, .18);
+      box-shadow: 0 8px 20px rgba(33, 49, 44, .08);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      line-height: 1;
+      min-width: 102px;
+      font-weight: 950;
+      color: var(--pine);
+    }
+
+    .brand small {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 7px;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tabs a,
+    .control,
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 13px;
+      border: 2px solid rgba(33, 49, 44, .2);
+      border-radius: 8px;
+      background: #fff8e8;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 950;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 0 rgba(33, 49, 44, .18);
+    }
+
+    .tabs a[aria-current="true"],
+    .button.primary {
+      color: #fff8e8;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .button.red {
+      color: #fff8e8;
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .control {
+      width: 46px;
+      padding: 0;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    main {
+      width: min(1220px, calc(100vw - 22px));
+      margin: 12px auto 40px;
+    }
+
+    .slide {
+      min-height: calc(100svh - var(--nav-h) - 24px);
+      margin: 0 0 18px;
+      padding: clamp(18px, 4vw, 42px);
+      position: relative;
+      overflow: hidden;
+      border: 3px solid rgba(33, 49, 44, .18);
+      border-radius: 8px;
+      background: rgba(255, 246, 223, .94);
+      box-shadow: var(--shadow);
+    }
+
+    .slide:before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px dashed rgba(33, 49, 44, .19);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .slide > * { position: relative; }
+
+    .postcard {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(290px, .82fr);
+      gap: clamp(18px, 4vw, 44px);
+      align-items: center;
+      background:
+        linear-gradient(115deg, rgba(255, 246, 223, .94), rgba(255, 246, 223, .78)),
+        url("favorite-03-16x9-current-best.jpg") center / cover;
+    }
+
+    .postcard:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(247, 236, 208, .96) 0 43%, rgba(247, 236, 208, .55));
+      pointer-events: none;
+    }
+
+    .postcard > * { z-index: 1; }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 34px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 2px solid rgba(168, 66, 43, .35);
+      border-radius: 8px;
+      background: rgba(255, 248, 232, .92);
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Cooper Black", "Bookman Old Style", Georgia, serif;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      max-width: 760px;
+      font-size: clamp(48px, 10vw, 110px);
+      line-height: .86;
+      color: var(--pine);
+      text-shadow: 2px 2px 0 rgba(216, 155, 44, .35);
+    }
+
+    h2 {
+      font-size: clamp(34px, 6vw, 66px);
+      line-height: .92;
+    }
+
+    h3 {
+      font-size: clamp(22px, 4vw, 36px);
+      line-height: 1;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.4vw, 20px);
+      line-height: 1.45;
+    }
+
+    .lede {
+      max-width: 720px;
+      color: #3b3b2b;
+      font-size: clamp(20px, 3.5vw, 30px);
+      font-weight: 850;
+      line-height: 1.18;
+    }
+
+    .stamp-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stamp {
+      padding: 16px;
+      border: 3px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background: rgba(255, 248, 232, .92);
+      transform: rotate(var(--tilt, -1deg));
+      box-shadow: 0 10px 24px rgba(33, 49, 44, .12);
+    }
+
+    .stamp:nth-child(even) { --tilt: 1deg; }
+
+    .stamp b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--red);
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .map-slide {
+      width: 100vw;
+      min-height: calc(100svh - var(--nav-h));
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      margin-bottom: 18px;
+      border: 0;
+      border-radius: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 0;
+      padding: 0;
+      background: #171f1c;
+      box-shadow: none;
+    }
+
+    .map-slide:before {
+      display: none;
+    }
+
+    .map-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 12px;
+      padding: 10px 12px;
+      flex-wrap: wrap;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      border: 2px solid rgba(255, 248, 232, .28);
+      border-radius: 8px;
+      background: rgba(23, 31, 28, .72);
+      color: #fff8e8;
+      backdrop-filter: blur(8px);
+    }
+
+    .map-head p {
+      color: #fff8e8;
+      font-size: 15px;
+    }
+
+    .full-map {
+      margin: 0;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: #171f1c;
+      box-shadow: none;
+    }
+
+    .full-map img {
+      width: 100%;
+      height: calc(100svh - var(--nav-h));
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+      cursor: zoom-in;
+    }
+
+    .full-map img:active {
+      cursor: zoom-out;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(320px, 1.14fr);
+      gap: clamp(18px, 4vw, 34px);
+      align-items: stretch;
+    }
+
+    .route-art,
+    .scene-art,
+    .map-crop {
+      min-height: 300px;
+      border: 4px solid rgba(33, 49, 44, .24);
+      border-radius: 8px;
+      background:
+        linear-gradient(#b8d8d2 0 42%, #e7c981 42% 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 2px rgba(255, 248, 232, .5);
+    }
+
+    .map-crop {
+      background:
+        linear-gradient(180deg, rgba(23, 60, 51, .02), rgba(23, 60, 51, .08)),
+        url("favorite-03-16x9-current-best.jpg") center / cover;
+    }
+
+    .plan-poster {
+      min-height: 420px;
+      display: grid;
+      align-content: end;
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(184, 216, 210, .2), rgba(23, 60, 51, .76)),
+        url("favorite-03-16x9-current-best.jpg") center / cover;
+      color: #fff8e8;
+    }
+
+    .plan-poster h3,
+    .plan-poster p {
+      color: #fff8e8;
+      text-shadow: 0 2px 12px rgba(23, 31, 28, .5);
+    }
+
+    .plan-poster h3 {
+      font-size: clamp(30px, 5vw, 54px);
+    }
+
+    .route-art:before {
+      content: "";
+      position: absolute;
+      width: 82%;
+      height: 110px;
+      left: 8%;
+      top: 50%;
+      border-top: 22px solid #2c332f;
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      box-shadow: 0 -7px 0 #e2a930;
+    }
+
+    .route-art:after {
+      content: "TX  OK  KS  MO  IA  MN  WI";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      color: #fff8e8;
+      background: var(--green);
+      border: 3px solid rgba(255, 248, 232, .6);
+      border-radius: 8px;
+      padding: 12px;
+      font-weight: 950;
+      font-size: clamp(18px, 3vw, 30px);
+      word-spacing: clamp(5px, 2vw, 18px);
+    }
+
+    .sun {
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      right: 32px;
+      top: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 10px rgba(216, 155, 44, .22);
+    }
+
+    .pine-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 86px;
+      min-height: 74px;
+      background:
+        conic-gradient(from 150deg at 50% 15%, transparent 0 24%, #234d3d 0 42%, transparent 0) 0 0 / 72px 74px repeat-x;
+      opacity: .88;
+    }
+
+    .sign-grid,
+    .card-grid,
+    .state-grid,
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .plan-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .plan-ticket {
+      min-height: 168px;
+      padding: 15px;
+      border: 3px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background: #fff8e8;
+      box-shadow: 0 7px 0 rgba(33, 49, 44, .12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-ticket:before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      right: -20px;
+      top: 0;
+      height: 48px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 248, 232, .35) 0 12px, transparent 12px 24px),
+        var(--green);
+      transform: rotate(-2deg);
+      transform-origin: left top;
+    }
+
+    .plan-ticket .num {
+      position: relative;
+      z-index: 1;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 34px;
+      border: 3px solid #fff8e8;
+      border-radius: 50%;
+      color: #fff8e8;
+      background: var(--red);
+      font-weight: 950;
+    }
+
+    .plan-ticket strong {
+      display: block;
+      color: var(--pine);
+      font-size: 21px;
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .plan-ticket span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.32;
+    }
+
+    .timeline-map {
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .timeline-scene {
+      min-height: 620px;
+      border: 4px solid rgba(33, 49, 44, .23);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(33, 49, 44, .02), rgba(23, 60, 51, .34)),
+        url("solon-springs-timeline-road-poster.jpg") center / cover;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 2px rgba(255, 248, 232, .5);
+    }
+
+    .timeline-scene:before {
+      content: "ROAD STORY";
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      padding: 9px 12px;
+      border: 3px solid rgba(255, 248, 232, .85);
+      border-radius: 8px;
+      background: rgba(168, 66, 43, .94);
+      color: #fff8e8;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .timeline-scene:after {
+      content: "20 hours becomes a story when the stops have a rhythm";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 14px;
+      border: 3px solid rgba(255, 248, 232, .85);
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff8e8;
+      font-family: "Cooper Black", "Bookman Old Style", Georgia, serif;
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: .96;
+    }
+
+    .timeline-stops {
+      display: grid;
+      gap: 10px;
+      align-content: stretch;
+    }
+
+    .timeline-stops .stop {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      min-height: 91px;
+      background:
+        linear-gradient(90deg, rgba(255, 248, 232, .98), rgba(255, 248, 232, .91)),
+        linear-gradient(135deg, rgba(184, 216, 210, .75), rgba(231, 201, 129, .82));
+      border-color: rgba(36, 77, 61, .28);
+      box-shadow: 0 6px 0 rgba(33, 49, 44, .12);
+    }
+
+    .timeline-stops .stop:nth-child(odd) {
+      transform: rotate(-.45deg);
+    }
+
+    .timeline-stops .stop:nth-child(even) {
+      transform: rotate(.45deg);
+    }
+
+    .sign,
+    .road-card,
+    .state-card,
+    .memory-card,
+    .hotel,
+    .call-card {
+      min-width: 0;
+      padding: 16px;
+      border: 3px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background: #fff8e8;
+      box-shadow: 0 7px 0 rgba(33, 49, 44, .12);
+    }
+
+    .sign {
+      border-color: rgba(36, 77, 61, .35);
+      background: linear-gradient(180deg, #fff8e8, #f1e3bd);
+    }
+
+    .sign .num,
+    .stop-dot {
+      width: 46px;
+      height: 46px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff8e8;
+      border: 3px solid #fff8e8;
+      font-weight: 950;
+      box-shadow: 0 0 0 2px rgba(33, 49, 44, .2);
+    }
+
+    .sign strong,
+    .road-card strong,
+    .hotel strong,
+    .call-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--pine);
+      font-size: clamp(19px, 3vw, 25px);
+      line-height: 1.05;
+    }
+
+    .sign span,
+    .road-card span,
+    .hotel span,
+    .call-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .big-choice {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .choice {
+      min-height: 380px;
+      display: grid;
+      align-content: end;
+      gap: 8px;
+      padding: 18px;
+      border: 4px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(184, 216, 210, .18), rgba(33, 49, 44, .78)),
+        var(--choice-bg, url("favorite-03-16x9-current-best.jpg")) center / cover;
+      position: relative;
+      overflow: hidden;
+      color: #fff8e8;
+    }
+
+    .choice:before {
+      content: attr(data-icon);
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: fit-content;
+      padding: 9px 12px;
+      border: 3px solid rgba(255, 248, 232, .8);
+      border-radius: 8px;
+      background: rgba(168, 66, 43, .94);
+      color: #fff8e8;
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .choice h3,
+    .choice p { color: #fff8e8; }
+
+    .choice p {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(23, 31, 28, .62);
+    }
+
+    .stops {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .food-hero {
+      margin: 0 0 18px;
+      min-height: 300px;
+      padding: 10px;
+      border: 4px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background: #d2b979;
+      box-shadow: 0 12px 28px rgba(33, 49, 44, .16);
+    }
+
+    .food-hero img {
+      width: 100%;
+      height: min(48svh, 440px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 5px;
+      border: 2px solid rgba(33, 49, 44, .18);
+    }
+
+    .stop {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 3px solid rgba(33, 49, 44, .18);
+      border-radius: 8px;
+      background: #fff8e8;
+      box-shadow: 0 6px 0 rgba(33, 49, 44, .1);
+    }
+
+    .stop b {
+      display: block;
+      color: var(--pine);
+      font-size: 20px;
+    }
+
+    .stop small {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .map-link {
+      flex: none;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #fff8e8;
+      background: var(--lake);
+      font-weight: 950;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .hotel-zone {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .hotel-hero {
+      margin: 0 0 18px;
+      min-height: 300px;
+      padding: 10px;
+      border: 4px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background: #d2b979;
+      box-shadow: 0 12px 28px rgba(33, 49, 44, .16);
+    }
+
+    .hotel-hero img {
+      width: 100%;
+      height: min(44svh, 430px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 5px;
+      border: 2px solid rgba(33, 49, 44, .18);
+    }
+
+    .hotel {
+      display: grid;
+      gap: 12px;
+      background:
+        linear-gradient(180deg, rgba(255, 248, 232, .88), rgba(255, 248, 232, .96)),
+        radial-gradient(circle at 80% 15%, rgba(216, 155, 44, .8), transparent 23%),
+        linear-gradient(135deg, var(--sky), var(--map));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hotel:before {
+      content: "SLEEP GATE";
+      position: absolute;
+      right: -38px;
+      top: 22px;
+      padding: 8px 42px;
+      color: #fff8e8;
+      background: var(--red);
+      font-size: 12px;
+      font-weight: 950;
+      transform: rotate(18deg);
+    }
+
+    .hotel:after {
+      content: "KEY";
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      width: 56px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255, 248, 232, .78);
+      border-radius: 8px;
+      color: #fff8e8;
+      background: rgba(45, 113, 133, .82);
+      font-size: 12px;
+      font-weight: 950;
+      transform: rotate(-5deg);
+    }
+
+    .hotel .badge {
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #fff8e8;
+      background: var(--green);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .state-board {
+      display: grid;
+      grid-template-columns: minmax(320px, .92fr) minmax(0, 1.08fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .state-atlas {
+      min-height: 620px;
+      border: 4px solid rgba(33, 49, 44, .24);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(184, 216, 210, .04), rgba(23, 60, 51, .6)),
+        url("solon-springs-timeline-road-poster.jpg") center / cover;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 2px rgba(255, 248, 232, .55);
+    }
+
+    .state-atlas:before {
+      content: "STATE-LINE GAME";
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      padding: 10px 13px;
+      border: 3px solid rgba(255, 248, 232, .85);
+      border-radius: 8px;
+      color: #fff8e8;
+      background: var(--red);
+      font-weight: 950;
+    }
+
+    .state-atlas:after {
+      content: "Swipe this page when we cross a border. One tiny moment per state so the drive has chapters.";
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 18px;
+      border: 3px solid rgba(255, 248, 232, .75);
+      border-radius: 8px;
+      color: #fff8e8;
+      background: rgba(23, 31, 28, .68);
+      font-family: "Cooper Black", "Bookman Old Style", Georgia, serif;
+      font-size: clamp(25px, 4vw, 43px);
+      line-height: .98;
+    }
+
+    .state-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .state-stamp {
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      min-height: 88px;
+      padding: 11px 12px;
+      border: 3px solid rgba(33, 49, 44, .2);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255, 248, 232, .99), rgba(255, 248, 232, .94)),
+        linear-gradient(135deg, var(--sky), var(--map));
+      box-shadow: 0 6px 0 rgba(33, 49, 44, .12);
+    }
+
+    .state-stamp:nth-child(2n) {
+      background:
+        linear-gradient(90deg, rgba(255, 248, 232, .99), rgba(255, 248, 232, .93)),
+        linear-gradient(135deg, rgba(190, 97, 50, .45), rgba(184, 216, 210, .75));
+    }
+
+    .state-stamp .abbr {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff8e8;
+      background: var(--red);
+      font-size: 24px;
+      font-weight: 950;
+      border: 3px solid rgba(255, 248, 232, .9);
+      box-shadow: 0 0 0 2px rgba(33, 49, 44, .2);
+    }
+
+    .state-stamp h3 {
+      margin-bottom: 3px;
+      color: var(--pine);
+      font-size: clamp(19px, 2.4vw, 27px);
+      line-height: .95;
+    }
+
+    .state-stamp p {
+      color: #514832;
+      font-family: "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.22;
+      font-weight: 760;
+    }
+
+    .state-stamp b {
+      color: var(--red);
+    }
+
+    .scene-art {
+      display: grid;
+      min-height: 360px;
+      padding: 10px;
+      background: #d2b979;
+    }
+
+    .scene-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 330px;
+      object-fit: cover;
+      display: block;
+      border-radius: 5px;
+      border: 2px solid rgba(33, 49, 44, .2);
+    }
+
+    .memory-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 20px;
+    }
+
+    .memory-card {
+      min-height: 240px;
+      display: grid;
+      align-content: end;
+      gap: 8px;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, transparent 0 46%, rgba(23, 31, 28, .3) 46% 54%, rgba(255, 248, 232, .98) 54% 100%),
+        url("solon-springs-cabin-memory-montage.jpg") center / cover;
+    }
+
+    .memory-card:before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      min-height: 92px;
+      border: 3px solid rgba(33, 49, 44, .16);
+      border-radius: 8px;
+      background: rgba(255, 248, 232, .18);
+    }
+
+    .memory-card h3,
+    .memory-card p {
+      position: relative;
+      z-index: 1;
+      padding-inline: 14px;
+    }
+
+    .memory-card h3 {
+      padding-top: 12px;
+      color: var(--pine);
+      font-size: clamp(22px, 3.4vw, 34px);
+      line-height: .95;
+      text-shadow: none;
+    }
+
+    .memory-card p {
+      padding-bottom: 14px;
+      color: #493f2f;
+      font-size: 15px;
+      line-height: 1.28;
+      font-weight: 750;
+    }
+
+    .memory-card.m1 { background-position: left center; }
+    .memory-card.m2 { background-position: 38% center; }
+    .memory-card.m3 { background-position: 70% center; }
+    .memory-card.m4 { background-position: right center; }
+    .memory-card.m5 { background-position: 8% center; }
+    .memory-card.m6 { background-position: 52% center; }
+
+    .arrival-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .arrival-boost {
+      margin-top: 14px;
+      padding: 18px;
+      border: 4px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(168, 66, 43, .94), rgba(36, 77, 61, .94)),
+        url("solon-springs-timeline-road-poster.jpg") center / cover;
+      color: #fff8e8;
+      box-shadow: 0 8px 0 rgba(33, 49, 44, .14);
+    }
+
+    .arrival-boost p {
+      color: #fff8e8;
+      font-family: "Cooper Black", "Bookman Old Style", Georgia, serif;
+      font-size: clamp(24px, 4vw, 44px);
+      line-height: .98;
+    }
+
+    .arrival-tile {
+      min-height: 230px;
+      display: grid;
+      align-content: end;
+      gap: 8px;
+      padding: 18px;
+      border: 4px solid rgba(33, 49, 44, .18);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(45, 113, 133, .1), rgba(23, 60, 51, .84)),
+        url("solon-springs-cabin-memory-montage.jpg") center / cover;
+      color: #fff8e8;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .arrival-tile:before {
+      content: attr(data-icon);
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      padding: 8px 10px;
+      border: 2px solid rgba(255, 248, 232, .7);
+      border-radius: 8px;
+      background: rgba(23, 31, 28, .5);
+      font-size: 13px;
+      font-weight: 950;
+      opacity: 1;
+    }
+
+    .arrival-tile h3,
+    .arrival-tile p { color: #fff8e8; }
+
+    .call-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .blank {
+      min-height: 46px;
+      padding: 12px;
+      border: 2px dashed rgba(33, 49, 44, .25);
+      border-radius: 8px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .35);
+      font-weight: 850;
+    }
+
+    .closing {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(247, 236, 208, .86), rgba(247, 236, 208, .86)),
+        url("favorite-03-16x9-current-best.jpg") center / cover;
+    }
+
+    .closing .lede { margin: 12px auto 0; }
+
+    .section-head {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        grid-template-columns: 1fr auto;
+      }
+
+      .tabs {
+        grid-column: 1 / -1;
+        order: 3;
+      }
+
+      .controls { grid-column: 2; }
+
+      main {
+        width: min(100vw - 12px, 760px);
+        margin-top: 8px;
+      }
+
+      .postcard,
+      .two-col,
+      .timeline-map,
+      .plan-strip,
+      .state-board,
+      .hotel-zone,
+      .arrival-board,
+      .call-grid,
+      .big-choice {
+        grid-template-columns: 1fr;
+      }
+
+      .postcard:after {
+        background: rgba(247, 236, 208, .86);
+      }
+
+      .full-map img {
+        height: calc(100svh - var(--nav-h));
+      }
+
+      .sign-grid,
+      .card-grid,
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stop {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .timeline-scene {
+        min-height: 340px;
+      }
+
+      .timeline-stops {
+        grid-template-columns: 1fr;
+      }
+
+      .stop .map-link {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root { --nav-h: 112px; }
+
+      .slide {
+        min-height: calc(100svh - var(--nav-h) - 10px);
+        padding: 16px;
+      }
+
+      .full-map {
+        padding: 0;
+      }
+
+      .full-map img {
+        height: calc(100svh - var(--nav-h));
+      }
+
+      .state-atlas {
+        min-height: 360px;
+      }
+
+      .tabs a { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <header class="topbar">
+    <div class="brand">Solon Run<small>Family Deck</small></div>
+    <nav class="tabs" aria-label="Trip sections">
+      <a href="#title">Start</a>
+      <a href="#map">Map</a>
+      <a href="#plan">Plan</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#gates">Gates</a>
+      <a href="#food">Food</a>
+      <a href="#hotels">Hotels</a>
+      <a href="#states">States</a>
+      <a href="#story">Story</a>
+      <a href="#arrival">Arrival</a>
+      <a href="#aaa">AAA</a>
+      <a href="#finale">Finale</a>
+      <a href="keepsake.html" download>Save Copy</a>
+    </nav>
+    <div class="controls">
+      <button class="control" type="button" id="prev" aria-label="Previous section">‹</button>
+      <button class="control" type="button" id="next" aria-label="Next section">›</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="slide postcard" id="title" data-title="Start">
+      <div>
+        <span class="kicker">Texas to Grandma's Cabin</span>
+        <h1>The Solon Springs Run</h1>
+        <p class="lede">A Fourth of July family road trip with good snacks, smart sleep gates, strange roadside facts, and a little childhood waiting at the end of the road.</p>
+        <div class="actions">
+          <a class="button primary" href="#map">Open the full map</a>
+          <a class="button" href="#story">Why we're going</a>
+        </div>
+      </div>
+      <aside class="stamp-stack" aria-label="Trip highlights">
+        <div class="stamp"><b>Mission</b><p>Prosper to Solon Springs without making the drive miserable.</p></div>
+        <div class="stamp"><b>Vibe</b><p>Road signs, cabin memories, lake air, and just enough planning to keep it fun.</p></div>
+        <div class="stamp"><b>Rule</b><p>Useful on an iPhone. Pretty enough on an iPad. Never boring.</p></div>
+      </aside>
+    </section>
+
+    <section class="slide map-slide" id="map" data-title="Map">
+      <div class="map-head">
+        <span class="kicker">Full Route Poster</span>
+        <p>This gets its own page because it is the trip board, not decoration.</p>
+      </div>
+      <figure class="full-map">
+        <img src="favorite-03-16x9-current-best.jpg" alt="Illustrated Solon Springs Run map with route, time markers, stops, and optional side quests.">
+      </figure>
+    </section>
+
+    <section class="slide" id="plan" data-title="Plan">
+      <div class="two-col">
+        <div class="section-head">
+          <span class="kicker">Best Plan</span>
+          <h2>Keep the road feeling like part of the trip.</h2>
+          <p class="lede">The win is not just getting there. The win is snacks handled, energy protected, Christina comfortable, and the cabin still feeling like a reward when we arrive.</p>
+        </div>
+        <div class="plan-poster">
+          <h3>The northbound rule</h3>
+          <p>Big roads. Good stops. No punishment motel. No “we saved six minutes” choices that make the day worse.</p>
+        </div>
+      </div>
+      <div class="plan-strip">
+        <div class="plan-ticket"><span class="num">1</span><strong>Launch clean</strong><span>Denton Buc-ee's, snacks, water, coffee, bathrooms. Make the opening hour feel easy.</span></div>
+        <div class="plan-ticket"><span class="num">2</span><strong>Reset often</strong><span>Stops are not failures. They are how a 20-hour drive stays human.</span></div>
+        <div class="plan-ticket"><span class="num">3</span><strong>Dinner decides</strong><span>Iowa is the honest check: eat well, check energy, pick push or sleep.</span></div>
+        <div class="plan-ticket"><span class="num">4</span><strong>Arrive right</strong><span>Mom, Fourth of July, quiet water, cabin memories. Protect the feeling at the end.</span></div>
+      </div>
+    </section>
+
+    <section class="slide" id="timeline" data-title="Timeline">
+      <div class="section-head">
+        <span class="kicker">Drive Timeline</span>
+        <h2>A road-story, not a spreadsheet.</h2>
+        <p>Each stop has a mood and a job: stock up, stretch out, eat for real, decide honestly, then finish strong.</p>
+      </div>
+      <div class="timeline-map">
+        <div class="timeline-scene" aria-hidden="true"></div>
+        <div class="timeline-stops">
+        <div class="stop"><span class="stop-dot">0</span><div><b>6 AM · Prosper / Denton</b><small>Launch clean. Buc-ee's is the opening scene: bathrooms, coffee, snacks, road mood.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Denton+TX">Map</a></div>
+        <div class="stop"><span class="stop-dot">4</span><div><b>10 AM · OKC Zone</b><small>First “we're actually moving” marker. Keep it quick unless someone needs a real reset.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Oklahoma+City+I-35+food+gas">Map</a></div>
+        <div class="stop"><span class="stop-dot">8</span><div><b>2 PM · Kansas Lunch Stretch</b><small>Emporia / Flint Hills energy. Fuel, stretch, something decent if the car is getting restless.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Emporia+Kansas+I-35+food">Map</a></div>
+        <div class="stop"><span class="stop-dot">10</span><div><b>4 PM · KC / Cameron Reset</b><small>Coffee, bathroom, second wind. This is where the route turns from grind into northbound mission.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cameron+Missouri+I-35+food+gas">Map</a></div>
+        <div class="stop"><span class="stop-dot">13</span><div><b>6:45-7:45 PM · Iowa Dinner Decision</b><small>Ankeny/Ames area: eat well, check weather/energy, decide whether the night still has legs.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ankeny+Ames+Iowa+restaurants+I-35">Map</a></div>
+        <div class="stop"><span class="stop-dot">16</span><div><b>10 PM · Sleep Gate</b><small>Clear Lake or Owatonna if the right move is a clean hotel and a better morning.</small></div><a class="map-link" href="#hotels">Hotels</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="gates" data-title="Gates">
+      <div class="section-head">
+        <span class="kicker">Decision Gates</span>
+        <h2>Two honest checkpoints.</h2>
+        <p>The deck should make the decision easy in the car. No debating while everyone is tired and hungry.</p>
+      </div>
+      <div class="big-choice">
+        <div class="choice" data-icon="DINNER GATE" style="--choice-bg: url('solon-springs-food-fuel-collage.jpg')">
+          <h3>Dinner Gate</h3>
+          <p><b>6:45-7:45 PM · Iowa</b><br>Eat, stretch, check the weather and driver energy. If the group feels good, keep moving. If not, start aiming for quality sleep.</p>
+        </div>
+        <div class="choice" data-icon="SLEEP GATE" style="--choice-bg: url('solon-springs-hotel-sleep-gate.jpg')">
+          <h3>Sleep Gate</h3>
+          <p><b>9:30-10:30 PM · Clear Lake / Owatonna</b><br>Good hotel, easy route return, no sketchy parking lot, no bargain-bin punishment stay.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="#food">Dinner options</a>
+        <a class="button" href="#hotels">Quality hotels</a>
+      </div>
+    </section>
+
+    <section class="slide" id="food" data-title="Food">
+      <div class="section-head">
+        <span class="kicker">Food + Fuel</span>
+        <h2>Road food with a purpose.</h2>
+        <p>Each food stop should match the moment: launch fuel, stretch fuel, real dinner, or “we need something different.”</p>
+      </div>
+      <figure class="food-hero">
+        <img src="solon-springs-food-fuel-collage.jpg" alt="Vintage illustrated road-trip food and fuel collage with snacks, coffee, route map, gas stop, diner table, and Korean fried chicken.">
+      </figure>
+      <div class="stops">
+        <div class="stop"><span class="stop-dot">TX</span><div><b>Buc-ee's Denton · launch stash</b><small>Snacks, water, coffee, jerky, bathroom reset. This is the opening credits.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Denton+TX">Map</a></div>
+        <div class="stop"><span class="stop-dot">KS</span><div><b>Emporia / Flint Hills · lunch stretch</b><small>Simple, quick, enough to prevent car mutiny. If the views are good, take the tiny scenic win.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Emporia+Kansas+restaurants+I-35">Map</a></div>
+        <div class="stop"><span class="stop-dot">MO</span><div><b>KC / Cameron · reset stop</b><small>Coffee, bathrooms, driver swap. A stop with a job, not a meal unless the timing shifts.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cameron+Missouri+restaurants+I-35">Map</a></div>
+        <div class="stop"><span class="stop-dot">IA</span><div><b>Ankeny / Ames · real dinner</b><small>This is the main meal decision. Eat something that makes the next three hours better.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ankeny+Ames+Iowa+dinner+I-35">Map</a></div>
+        <div class="stop"><span class="stop-dot">K</span><div><b>Korean option · timing-dependent</b><small>Only if the route and appetite line up: Basic Bird, Bonchon West Des Moines, or KPOT. Fun option, not mandatory homework.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Basic+Bird+Bonchon+KPOT+West+Des+Moines">Map</a></div>
+      </div>
+    </section>
+
+    <section class="slide" id="hotels" data-title="Hotels">
+      <div class="section-head">
+        <span class="kicker">Overnight Options</span>
+        <h2>The good hotel rule.</h2>
+        <p>If we stop, it should feel like a smart vacation choice: high-rated, clean, safe, close enough to I-35, and easy to leave from in the morning.</p>
+      </div>
+      <figure class="hotel-hero">
+        <img src="solon-springs-hotel-sleep-gate.jpg" alt="Illustrated high-quality roadside hotel at dusk with warm lights, freeway access, key tag, coffee, and breakfast.">
+      </figure>
+      <div class="hotel-zone">
+        <article class="hotel">
+          <span class="badge">Clear Lake · lake vibe + I-35</span>
+          <strong>AmericInn by Wyndham Clear Lake</strong>
+          <span>Practical freeway stop with pool/hot tub/breakfast energy. Good if we want easy in, easy out.</span>
+          <div class="actions"><a class="button primary" href="https://www.google.com/maps/search/?api=1&query=AmericInn+by+Wyndham+Clear+Lake+Iowa">Map</a><a class="button" href="https://www.wyndhamhotels.com/americinn/clear-lake-iowa/americinn-lodge-and-suites-clear-lake/overview">Hotel info</a></div>
+        </article>
+        <article class="hotel">
+          <span class="badge">Clear Lake · solid backup</span>
+          <strong>Best Western Holiday Lodge</strong>
+          <span>Reliable, close to Clear Lake attractions, still route-friendly. More character than a random roadside box.</span>
+          <div class="actions"><a class="button primary" href="https://www.google.com/maps/search/?api=1&query=Best+Western+Holiday+Lodge+Clear+Lake+Iowa">Map</a><a class="button" href="https://www.bestwestern.com/en_US/book/hotels-in-clear-lake/best-western-holiday-lodge/propertyCode.16081.html">Hotel info</a></div>
+        </article>
+        <article class="hotel">
+          <span class="badge">Owatonna · best comfort pick</span>
+          <strong>Home2 Suites by Hilton Owatonna</strong>
+          <span>Best overall later-stop fit: clean, newer, roomy, near the route, good for arriving tired without regretting it.</span>
+          <div class="actions"><a class="button primary" href="https://www.google.com/maps/search/?api=1&query=Home2+Suites+by+Hilton+Owatonna">Map</a><a class="button" href="https://www.hilton.com/en/hotels/owanwht-home2-suites-owatonna/">Hotel info</a></div>
+        </article>
+        <article class="hotel">
+          <span class="badge">Owatonna · polished choice</span>
+          <strong>Courtyard Owatonna Downtown</strong>
+          <span>Nicer feel if we choose comfort over freeway speed. A little less “off-ramp,” but better date-with-the-road dignity.</span>
+          <div class="actions"><a class="button primary" href="https://www.google.com/maps/search/?api=1&query=Courtyard+Owatonna+Downtown">Map</a><a class="button" href="https://www.marriott.com/en-us/hotels/rstoc-courtyard-owatonna-downtown/overview/">Hotel info</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide" id="states" data-title="States">
+      <div class="section-head">
+        <span class="kicker">State-Line Game</span>
+        <h2>Seven little chapters for the long road.</h2>
+        <p>This should feel like a page from the map, not a fact sheet. Hit it at every border for one quick car prompt.</p>
+      </div>
+      <div class="state-board">
+        <div class="state-atlas" aria-hidden="true"></div>
+        <div class="state-list">
+          <article class="state-stamp"><span class="abbr">TX</span><div><h3>Texas</h3><p><b>Opening scene:</b> Buc-ee's, big sky, snack strategy. Prompt: call the snack you are saving for later.</p></div></article>
+          <article class="state-stamp"><span class="abbr">OK</span><div><h3>Oklahoma</h3><p><b>Trip becomes real:</b> red dirt, Route 66 echoes. Prompt: first weird roadside sign wins until Kansas.</p></div></article>
+          <article class="state-stamp"><span class="abbr">KS</span><div><h3>Kansas</h3><p><b>Prairie reset:</b> Flint Hills, lunch stretch. Prompt: pick the official Kansas soundtrack song.</p></div></article>
+          <article class="state-stamp"><span class="abbr">MO</span><div><h3>Missouri</h3><p><b>KC/Cameron reset:</b> coffee, bathrooms, driver check. Prompt: are we still pleasant?</p></div></article>
+          <article class="state-stamp"><span class="abbr">IA</span><div><h3>Iowa</h3><p><b>Dinner gate:</b> Korean chicken, normal dinner, or keep moving? This is the honest group check.</p></div></article>
+          <article class="state-stamp"><span class="abbr">MN</span><div><h3>Minnesota</h3><p><b>North starts showing up:</b> lakes, pines, greener road. Prompt: predict the first false “almost there.”</p></div></article>
+          <article class="state-stamp"><span class="abbr">WI</span><div><h3>Wisconsin</h3><p><b>Final chapter:</b> cabin brain, quiet water, Mom, Fourth of July. Prompt: pick one drive memory to keep.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="story" data-title="Story">
+      <div class="two-col">
+        <div class="section-head">
+          <span class="kicker">Why We're Going</span>
+          <h2>Not just a drive. A return trip.</h2>
+          <p class="lede">Greg and Tim heading back to see Mom. Christina seeing this part of the country and the family cabin for the first time. Aidan back to see Grandma. Old memories meeting the rebuilt cabin.</p>
+        </div>
+        <figure class="scene-art">
+          <img src="solon-springs-cabin-memory-montage.jpg" alt="Warm illustrated collage of Solon Springs childhood cabin memories: fishing, breakfast, watermelon, fudge, tire swing, and army-men games.">
+        </figure>
+      </div>
+      <div class="memory-grid">
+        <article class="memory-card m1"><h3>Lake Days</h3><p>Back then: fishing, water, cooking what got caught, lake air stuck in the memory.</p></article>
+        <article class="memory-card m2"><h3>Summer Table</h3><p>Watermelon, pancakes, eggs, bacon, and cabin mornings that somehow stay perfect.</p></article>
+        <article class="memory-card m3"><h3>Dirt Road Battles</h3><p>Tim and Greg, little plastic army men, BB guns, firecrackers, last man standing.</p></article>
+        <article class="memory-card m4"><h3>Uncle Scott</h3><p>Secret fudge recipe arrival. A tiny family legend, and exactly the kind of detail to keep.</p></article>
+        <article class="memory-card m5"><h3>Tire Swing</h3><p>Back then: rope from the tree, swing out over the water, let go, splash.</p></article>
+        <article class="memory-card m6"><h3>New Cabin</h3><p>Same place, different shape. The memories come back with us, but the cabin is new now.</p></article>
+      </div>
+    </section>
+
+    <section class="slide" id="arrival" data-title="Arrival">
+      <div class="section-head">
+        <span class="kicker">Cabin Arrival</span>
+        <h2>Quiet water, trees, Fourth of July.</h2>
+        <p>No fake dock, no imaginary boat. Just the real tone: family, Mom, the little cabin near the water, and a long road finally ending somewhere that matters.</p>
+      </div>
+      <div class="arrival-boost"><p>First order of business: breathe, hug Mom, let the road fall off, and make the Fourth feel like the reward.</p></div>
+      <div class="arrival-board">
+        <article class="arrival-tile" data-icon="JULY 4"><h3>Holiday Arrival</h3><p>Arrive with Fourth of July energy, not “we survived a miserable drive” energy.</p></article>
+        <article class="arrival-tile" data-icon="PINES"><h3>Northwoods Mode</h3><p>Trees, quiet water, cabin air, slower mornings, and the good kind of tired.</p></article>
+        <article class="arrival-tile" data-icon="MOM"><h3>Mom + Cabin</h3><p>The actual reason for the miles. Keep the schedule loose enough to be present.</p></article>
+        <article class="arrival-tile" data-icon="BREAKFAST"><h3>Morning Win</h3><p>Pancakes, bacon, eggs, coffee, and letting the trip turn into a memory instead of a checklist.</p></article>
+      </div>
+    </section>
+
+    <section class="slide" id="aaa" data-title="AAA">
+      <div class="section-head">
+        <span class="kicker">Road Help</span>
+        <h2>AAA and essentials.</h2>
+        <p>This page is simple on purpose. If we need it, nobody wants clever. They want the button.</p>
+      </div>
+      <div class="call-grid">
+        <article class="call-card"><strong>AAA Roadside Assistance</strong><span>800-222-4357 / 800-AAA-HELP</span><div class="actions"><a class="button primary" href="tel:18002224357">Call AAA</a></div></article>
+        <article class="call-card"><strong>Emergency</strong><span>Use only for immediate danger or medical emergency.</span><div class="actions"><a class="button red" href="tel:911">Call 911</a></div></article>
+        <div class="blank">AAA membership #</div>
+        <div class="blank">Insurance / roadside details</div>
+        <div class="blank">Vehicle plate / notes</div>
+        <div class="blank">Family contact / cabin info</div>
+      </div>
+    </section>
+
+    <section class="slide closing" id="finale" data-title="Finale">
+      <div>
+        <span class="kicker">Bookend</span>
+        <h2>Good road. Good snacks. Grandma at the end.</h2>
+        <p class="lede">That is the whole point: make the miles feel like part of the story, not the price of admission.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="button primary" href="#map">Back to the map</a>
+          <a class="button" href="keepsake.html" download>Save keepsake copy</a>
+          <a class="button" href="#title">Start over</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll("main .slide"));
+    const tabs = Array.from(document.querySelectorAll(".tabs a"));
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    const progress = document.getElementById("progress");
+    let activeIndex = 0;
+
+    function setActive(index) {
+      activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+      const id = "#" + slides[activeIndex].id;
+      tabs.forEach(tab => tab.setAttribute("aria-current", tab.getAttribute("href") === id ? "true" : "false"));
+      prev.disabled = activeIndex === 0;
+      next.disabled = activeIndex === slides.length - 1;
+      progress.style.width = (((activeIndex + 1) / slides.length) * 100) + "%";
+    }
+
+    function go(delta) {
+      const target = slides[Math.max(0, Math.min(slides.length - 1, activeIndex + delta))];
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    prev.addEventListener("click", () => go(-1));
+    next.addEventListener("click", () => go(1));
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight") go(1);
+      if (event.key === "ArrowLeft") go(-1);
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      setActive(slides.indexOf(visible.target));
+    }, { threshold: [0.36, 0.58, 0.78] });
+
+    slides.forEach(slide => observer.observe(slide));
+    setActive(0);
+  </script>
+</body>
+</html>
