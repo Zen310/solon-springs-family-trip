@@ -379,6 +379,56 @@
       align-items: stretch;
     }
 
+    .journal-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+      gap: clamp(16px, 4vw, 34px);
+      align-items: center;
+    }
+
+    .journal-photo {
+      margin: 0;
+      padding: clamp(9px, 2vw, 14px);
+      border: 4px solid rgba(33, 49, 44, .24);
+      border-radius: 8px;
+      background: #fff8e8;
+      box-shadow: 0 10px 0 rgba(33, 49, 44, .12);
+      transform: rotate(-1deg);
+    }
+
+    .journal-photo img {
+      width: 100%;
+      display: block;
+      border: 2px solid rgba(33, 49, 44, .18);
+      border-radius: 6px;
+    }
+
+    .journal-photo figcaption {
+      margin-top: 8px;
+      color: var(--red);
+      font-size: 14px;
+      font-weight: 950;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .journal-note {
+      display: grid;
+      gap: 12px;
+      padding: clamp(18px, 4vw, 28px);
+      border: 4px solid rgba(168, 66, 43, .26);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255, 248, 232, .98), rgba(231, 201, 129, .72)),
+        url("favorite-03-16x9-current-best.jpg") center / cover;
+      box-shadow: 0 8px 0 rgba(33, 49, 44, .12);
+    }
+
+    .journal-note .stamp {
+      margin-top: 2px;
+      background: rgba(255, 248, 232, .88);
+    }
+
     .route-art,
     .scene-art,
     .map-crop {
@@ -1340,6 +1390,7 @@
 
       .postcard,
       .two-col,
+      .journal-entry,
       .timeline-map,
       .plan-strip,
       .state-board,
@@ -1403,6 +1454,11 @@
         border-radius: 0;
       }
 
+      .journal-photo {
+        margin-inline: -6px;
+        transform: rotate(0deg);
+      }
+
       .full-map {
         padding: 0;
       }
@@ -1456,6 +1512,7 @@
     <nav class="tabs" aria-label="Trip sections">
       <a href="#title">Start</a>
       <a href="#map">Map</a>
+      <a href="#journal">Journal</a>
       <a href="#plan">Plan</a>
       <a href="#timeline">Timeline</a>
       <a href="#gates">Gates</a>
@@ -1482,12 +1539,12 @@
         <p class="lede">A Fourth of July family road trip with good snacks, smart sleep gates, strange roadside facts, and a little childhood waiting at the end of the road.</p>
         <div class="actions">
           <a class="button primary" href="#map">Open the full map</a>
-          <a class="button" href="#story">New family memories</a>
+          <a class="button" href="#journal">Trip journal</a>
         </div>
       </div>
       <aside class="stamp-stack" aria-label="Trip highlights">
         <div class="stamp"><b>Mission</b><p>Prosper to Solon Springs without making the drive miserable.</p></div>
-        <div class="stamp"><b>New</b><p>Bear stories, Uncle Todd's luggage prank, Roman and Aiden on the lake, and the hornets-and-BB-gun legend.</p></div>
+        <div class="stamp"><b>New</b><p>The takeoff photo is in the trip journal, right where the story starts.</p></div>
         <div class="stamp"><b>Rule</b><p>Useful on an iPhone. Pretty enough on an iPad. Never boring.</p></div>
       </aside>
     </section>
@@ -1509,6 +1566,21 @@
       </figure>
     </section>
 
+    <section class="slide" id="journal" data-title="Journal">
+      <div class="journal-entry">
+        <figure class="journal-photo">
+          <img src="trip-journal-kickoff.jpg" alt="The family loaded into the black pickup truck at the start of the Solon Springs trip, with Pei Pei standing through the roof smiling with both arms raised.">
+          <figcaption>July 1, 2026 - The trip begins</figcaption>
+        </figure>
+        <div class="journal-note">
+          <span class="kicker">Trip Journal</span>
+          <h2>Rolling out for Solon Springs.</h2>
+          <p class="lede">Black truck packed, windows down, arms up, and the first page of the road trip officially written before Buc-ee's even had a chance.</p>
+          <div class="stamp"><b>First Stop</b><p>Buc-ee's in Melissa: fuel, snacks, bathrooms, coffee, and the proper Texas sendoff.</p></div>
+        </div>
+      </div>
+    </section>
+
     <section class="slide" id="plan" data-title="Plan">
       <div class="two-col">
         <div class="section-head">
@@ -1522,7 +1594,7 @@
         </div>
       </div>
       <div class="plan-strip">
-        <div class="plan-ticket"><span class="num">1</span><strong>Launch clean</strong><span>Denton Buc-ee's, snacks, water, coffee, bathrooms. Make the opening hour feel easy.</span></div>
+        <div class="plan-ticket"><span class="num">1</span><strong>Launch clean</strong><span>Melissa Buc-ee's, snacks, water, coffee, bathrooms. Make the opening hour feel easy.</span></div>
         <div class="plan-ticket"><span class="num">2</span><strong>Reset often</strong><span>Stops are not failures. They are how a 20-hour drive stays human.</span></div>
         <div class="plan-ticket"><span class="num">3</span><strong>Dinner decides</strong><span>Iowa is the honest check: eat well, check energy, pick push or sleep.</span></div>
         <div class="plan-ticket"><span class="num">4</span><strong>Arrive right</strong><span>Mom, Fourth of July, quiet water, cabin memories. Protect the feeling at the end.</span></div>
