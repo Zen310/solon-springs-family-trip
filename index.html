@@ -966,10 +966,12 @@
     }
 
     .scene-art {
+      margin: 0;
       display: grid;
       min-height: 0;
-      padding: 10px;
+      padding: 0;
       background: #d2b979;
+      box-shadow: 0 8px 0 rgba(33, 49, 44, .12);
     }
 
     .scene-art img {
@@ -1069,6 +1071,8 @@
 
     .lake-memory.feature-story {
       grid-template-columns: 1fr;
+      padding: 0;
+      background: #d2b979;
     }
 
     .lake-photo {
@@ -1092,6 +1096,31 @@
 
     .lake-memory.feature-story .lake-photo img {
       min-height: 0;
+    }
+
+    .lake-memory.feature-story .lake-photo {
+      padding: 0;
+      transform: none;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .lake-memory.feature-story .lake-photo img {
+      border-radius: 5px;
+      border: 2px solid rgba(33, 49, 44, .2);
+    }
+
+    .lake-memory.feature-story .lake-photo figcaption {
+      left: 12px;
+      right: auto;
+      bottom: 12px;
+      max-width: calc(100% - 24px);
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #fff8e8;
+      background: rgba(33, 49, 44, .86);
+      text-align: left;
     }
 
     .lake-photo figcaption {
@@ -1363,6 +1392,14 @@
         padding: 16px;
       }
 
+      #story .scene-art,
+      #story .lake-memory.feature-story {
+        width: calc(100% + 32px);
+        margin-inline: -16px;
+        border-inline: 0;
+        border-radius: 0;
+      }
+
       .full-map {
         padding: 0;
       }
@@ -1607,14 +1644,14 @@
 
     <section class="slide" id="story" data-title="Story">
       <div class="two-col story-intro">
+        <figure class="scene-art">
+          <img src="solon-springs-black-bear-stories.jpg" alt="Playful illustrated black bear cabin memory scene with boys on bicycles, bears, pine trees, cabin lights, and lake country.">
+        </figure>
         <div class="section-head">
           <span class="kicker">Why We're Going</span>
           <h2>Not just a drive. A return trip.</h2>
           <p class="lede">Greg and Tim heading back to see Mom. Christina seeing this part of the country and the family cabin for the first time. Aiden back to see Grandma. New memories are in here too: Roman and Aiden on the lake, black bears, Uncle Todd, and the hornets-and-BB-gun legend.</p>
         </div>
-        <figure class="scene-art">
-          <img src="solon-springs-black-bear-stories.jpg" alt="Playful illustrated black bear cabin memory scene with boys on bicycles, bears, pine trees, cabin lights, and lake country.">
-        </figure>
       </div>
       <div class="bear-feature text-only" aria-label="Black bear cabin stories">
         <div class="bear-stories">
