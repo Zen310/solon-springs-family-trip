@@ -7,6 +7,9 @@
   <meta name="apple-mobile-web-app-title" content="Solon Springs">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#171f1c">
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="favorite-03-16x9-current-best.jpg">
   <title>Solon Springs Family Trip Deck</title>
@@ -1792,6 +1795,12 @@
 
     slides.forEach(slide => observer.observe(slide));
     setActive(0);
+
+    if ("serviceWorker" in navigator && location.protocol === "https:") {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
   </script>
 </body>
 </html>

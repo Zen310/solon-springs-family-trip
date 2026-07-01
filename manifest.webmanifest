@@ -1,7 +1,7 @@
 {
   "name": "Solon Springs Family Trip",
   "short_name": "Solon Springs",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
   "background_color": "#171f1c",
