@@ -379,11 +379,20 @@
       align-items: stretch;
     }
 
+    .journal-stack {
+      display: grid;
+      gap: clamp(26px, 5vw, 42px);
+    }
+
     .journal-entry {
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
       gap: clamp(16px, 4vw, 34px);
       align-items: center;
+    }
+
+    .journal-entry:nth-child(even) .journal-photo {
+      transform: rotate(1deg);
     }
 
     .journal-photo {
@@ -1544,7 +1553,7 @@
       </div>
       <aside class="stamp-stack" aria-label="Trip highlights">
         <div class="stamp"><b>Mission</b><p>Prosper to Solon Springs without making the drive miserable.</p></div>
-        <div class="stamp"><b>New</b><p>The takeoff photo is in the trip journal, right where the story starts.</p></div>
+        <div class="stamp"><b>New</b><p>The Buc-ee's breakfast and coffee stop is now in the trip journal.</p></div>
         <div class="stamp"><b>Rule</b><p>Useful on an iPhone. Pretty enough on an iPad. Never boring.</p></div>
       </aside>
     </section>
@@ -1567,16 +1576,30 @@
     </section>
 
     <section class="slide" id="journal" data-title="Journal">
-      <div class="journal-entry">
-        <figure class="journal-photo">
-          <img src="trip-journal-kickoff.jpg" alt="The family loaded into the black pickup truck at the start of the Solon Springs trip, with Pei Pei standing through the roof smiling with both arms raised.">
-          <figcaption>July 1, 2026 - The trip begins</figcaption>
-        </figure>
-        <div class="journal-note">
-          <span class="kicker">Trip Journal</span>
-          <h2>Rolling out for Solon Springs.</h2>
-          <p class="lede">Black truck packed, windows down, arms up, and the first page of the road trip officially written before Buc-ee's even had a chance.</p>
-          <div class="stamp"><b>First Stop</b><p>Buc-ee's in Melissa: fuel, snacks, bathrooms, coffee, and the proper Texas sendoff.</p></div>
+      <div class="journal-stack">
+        <div class="journal-entry">
+          <figure class="journal-photo">
+            <img src="trip-journal-kickoff.jpg" alt="The family loaded into the black pickup truck at the start of the Solon Springs trip, with Pei Pei standing through the roof smiling with both arms raised.">
+            <figcaption>July 1, 2026 - The trip begins</figcaption>
+          </figure>
+          <div class="journal-note">
+            <span class="kicker">Trip Journal</span>
+            <h2>Rolling out for Solon Springs.</h2>
+            <p class="lede">Black truck packed, windows down, arms up, and the first page of the road trip officially written before Buc-ee's even had a chance.</p>
+            <div class="stamp"><b>First Stop</b><p>Buc-ee's in Melissa: fuel, snacks, bathrooms, coffee, and the proper Texas sendoff.</p></div>
+          </div>
+        </div>
+        <div class="journal-entry">
+          <figure class="journal-photo">
+            <img src="trip-journal-bucees-melissa.jpg" alt="Four people smiling for a sunny selfie in the Buc-ee's Melissa parking lot, with the red Buc-ee's sign and beaver logo behind them.">
+            <figcaption>7:15 AM - Buc-ee's Melissa</figcaption>
+          </figure>
+          <div class="journal-note">
+            <span class="kicker">Breakfast Stop</span>
+            <h2>Coffee, breakfast, and beef jerky secured.</h2>
+            <p class="lede">Morning Buc-ee's stop in Melissa: breakfast in hand, coffee loaded, favorite beef jerky grabbed, and the snack stash officially ready for the long push north.</p>
+            <div class="stamp"><b>Road Fuel</b><p>Breakfast + coffee for the humans. Beef jerky for the trip. This is how Texas says, "Now you may leave."</p></div>
+          </div>
         </div>
       </div>
     </section>
@@ -1610,7 +1633,7 @@
       <div class="timeline-map">
         <div class="timeline-scene" aria-hidden="true"></div>
         <div class="timeline-stops">
-        <div class="stop"><span class="stop-dot">0</span><div><b>6 AM · Prosper / Denton</b><small>Launch clean. Buc-ee's is the opening scene: bathrooms, coffee, snacks, road mood.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Denton+TX">Map</a></div>
+        <div class="stop"><span class="stop-dot">0</span><div><b>6 AM · Prosper / Melissa</b><small>Launch clean. Buc-ee's is the opening scene: bathrooms, coffee, snacks, road mood.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Melissa+TX">Map</a></div>
         <div class="stop"><span class="stop-dot">4</span><div><b>10 AM · OKC Zone</b><small>First “we're actually moving” marker. Keep it quick unless someone needs a real reset.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Oklahoma+City+I-35+food+gas">Map</a></div>
         <div class="stop"><span class="stop-dot">8</span><div><b>2 PM · Kansas Lunch Stretch</b><small>Emporia / Flint Hills energy. Fuel, stretch, something decent if the car is getting restless.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Emporia+Kansas+I-35+food">Map</a></div>
         <div class="stop"><span class="stop-dot">10</span><div><b>4 PM · KC / Cameron Reset</b><small>Coffee, bathroom, second wind. This is where the route turns from grind into northbound mission.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cameron+Missouri+I-35+food+gas">Map</a></div>
@@ -1652,7 +1675,7 @@
         <img src="solon-springs-food-fuel-collage.jpg" alt="Vintage illustrated road-trip food and fuel collage with snacks, coffee, route map, gas stop, diner table, and Korean fried chicken.">
       </figure>
       <div class="stops">
-        <div class="stop"><span class="stop-dot">TX</span><div><b>Buc-ee's Denton · launch stash</b><small>Snacks, water, coffee, jerky, bathroom reset. This is the opening credits.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Denton+TX">Map</a></div>
+        <div class="stop"><span class="stop-dot">TX</span><div><b>Buc-ee's Melissa · launch stash</b><small>Breakfast, coffee, snacks, favorite beef jerky, and a bathroom reset. This is the opening credits.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Buc-ee%27s+Melissa+TX">Map</a></div>
         <div class="stop"><span class="stop-dot">KS</span><div><b>Emporia / Flint Hills · lunch stretch</b><small>Simple, quick, enough to prevent car mutiny. If the views are good, take the tiny scenic win.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Emporia+Kansas+restaurants+I-35">Map</a></div>
         <div class="stop"><span class="stop-dot">MO</span><div><b>KC / Cameron · reset stop</b><small>Coffee, bathrooms, driver swap. A stop with a job, not a meal unless the timing shifts.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cameron+Missouri+restaurants+I-35">Map</a></div>
         <div class="stop"><span class="stop-dot">IA</span><div><b>Ankeny / Ames · real dinner</b><small>This is the main meal decision. Eat something that makes the next three hours better.</small></div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ankeny+Ames+Iowa+dinner+I-35">Map</a></div>
