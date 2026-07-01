@@ -1042,6 +1042,51 @@
     .memory-card.m5 { background-position: 8% center; }
     .memory-card.m6 { background-position: 52% center; }
 
+    .bear-feature {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: minmax(320px, 1.05fr) minmax(0, .95fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .bear-art {
+      min-height: 360px;
+      border: 4px solid rgba(33, 49, 44, .24);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(23, 31, 28, .04), rgba(23, 60, 51, .22)),
+        url("solon-springs-black-bear-stories.jpg") center / cover;
+      box-shadow: inset 0 0 0 2px rgba(255, 248, 232, .5), 0 8px 0 rgba(33, 49, 44, .12);
+    }
+
+    .bear-stories {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bear-story {
+      min-height: 172px;
+      padding: 16px;
+      border: 3px solid rgba(33, 49, 44, .22);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 248, 232, .98), rgba(241, 227, 189, .96));
+      box-shadow: 0 7px 0 rgba(33, 49, 44, .12);
+    }
+
+    .bear-story h3 {
+      margin-bottom: 8px;
+      color: var(--red);
+    }
+
+    .bear-story p {
+      color: #493f2f;
+      font-size: 16px;
+      font-weight: 750;
+      line-height: 1.34;
+    }
+
     .arrival-board {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1165,6 +1210,7 @@
       .plan-strip,
       .state-board,
       .hotel-zone,
+      .bear-feature,
       .arrival-board,
       .call-grid,
       .big-choice {
@@ -1457,11 +1503,24 @@
         <div class="section-head">
           <span class="kicker">Why We're Going</span>
           <h2>Not just a drive. A return trip.</h2>
-          <p class="lede">Greg and Tim heading back to see Mom. Christina seeing this part of the country and the family cabin for the first time. Aidan back to see Grandma. Old memories meeting the rebuilt cabin.</p>
+          <p class="lede">Greg and Tim heading back to see Mom. Christina seeing this part of the country and the family cabin for the first time. Aiden back to see Grandma. Old memories meeting the rebuilt cabin, including the black bears that apparently keep showing up in every generation's cabin lore.</p>
         </div>
         <figure class="scene-art">
-          <img src="solon-springs-cabin-memory-montage.jpg" alt="Warm illustrated collage of Solon Springs childhood cabin memories: fishing, breakfast, watermelon, fudge, tire swing, and army-men games.">
+          <img src="solon-springs-cabin-memory-montage.jpg" alt="Warm illustrated collage of Solon Springs childhood cabin memories: fishing, breakfast, watermelon, fudge, tire swing, army-men games, and black bear stories.">
         </figure>
+      </div>
+      <div class="bear-feature" aria-label="Black bear cabin stories">
+        <div class="bear-art" role="img" aria-label="Illustrated black bear memory scene with boys on bicycles, a baby black bear, a big bear by the outhouse, pine trees, cabin lights, and lake country."></div>
+        <div class="bear-stories">
+          <article class="bear-story">
+            <h3>Roman + Aiden's Bear Ride</h3>
+            <p>Middle-school-age Roman and Aiden had their bikes out at the cabin, rolled into a little ride, and found a baby black bear. The photo idea lasted about two seconds before the better thought hit: baby bear means mama bear. Smart call: turn the bikes around and get out of there.</p>
+          </article>
+          <article class="bear-story">
+            <h3>The Outhouse Bear</h3>
+            <p>Back when the cabin still had only an outhouse, young Tim headed across the night path by the creek. A big black bear came around the outhouse, and that bathroom trip became a full-speed retreat back inside.</p>
+          </article>
+        </div>
       </div>
       <div class="memory-grid">
         <article class="memory-card m1"><h3>Lake Days</h3><p>Back then: fishing, water, cooking what got caught, lake air stuck in the memory.</p></article>
@@ -1469,7 +1528,7 @@
         <article class="memory-card m3"><h3>Dirt Road Battles</h3><p>Tim and Greg, little plastic army men, BB guns, firecrackers, last man standing.</p></article>
         <article class="memory-card m4"><h3>Uncle Scott</h3><p>Secret fudge recipe arrival. A tiny family legend, and exactly the kind of detail to keep.</p></article>
         <article class="memory-card m5"><h3>Tire Swing</h3><p>Back then: rope from the tree, swing out over the water, let go, splash.</p></article>
-        <article class="memory-card m6"><h3>New Cabin</h3><p>Same place, different shape. The memories come back with us, but the cabin is new now.</p></article>
+        <article class="memory-card m6"><h3>Bear Country</h3><p>Baby bear, big bear, bike escape, outhouse sprint. Black bears are officially part of the cabin mythology.</p></article>
       </div>
     </section>
 
