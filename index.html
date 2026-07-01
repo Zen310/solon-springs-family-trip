@@ -967,19 +967,23 @@
 
     .scene-art {
       display: grid;
-      min-height: 360px;
+      min-height: 0;
       padding: 10px;
       background: #d2b979;
     }
 
     .scene-art img {
       width: 100%;
-      height: 100%;
-      min-height: 330px;
-      object-fit: cover;
+      height: auto;
+      min-height: 0;
+      object-fit: contain;
       display: block;
       border-radius: 5px;
       border: 2px solid rgba(33, 49, 44, .2);
+    }
+
+    .story-intro {
+      grid-template-columns: 1fr;
     }
 
     .memory-grid {
@@ -1064,7 +1068,7 @@
     }
 
     .lake-memory.feature-story {
-      grid-template-columns: minmax(340px, 1.12fr) minmax(0, .88fr);
+      grid-template-columns: 1fr;
     }
 
     .lake-photo {
@@ -1079,15 +1083,15 @@
 
     .lake-photo img {
       width: 100%;
-      height: 100%;
-      min-height: 285px;
-      object-fit: cover;
+      height: auto;
+      min-height: 0;
+      object-fit: contain;
       display: block;
       border-radius: 3px;
     }
 
     .lake-memory.feature-story .lake-photo img {
-      min-height: 420px;
+      min-height: 0;
     }
 
     .lake-photo figcaption {
@@ -1602,7 +1606,7 @@
     </section>
 
     <section class="slide" id="story" data-title="Story">
-      <div class="two-col">
+      <div class="two-col story-intro">
         <div class="section-head">
           <span class="kicker">Why We're Going</span>
           <h2>Not just a drive. A return trip.</h2>
