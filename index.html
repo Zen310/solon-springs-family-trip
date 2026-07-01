@@ -1063,6 +1063,10 @@
       grid-template-columns: 1fr;
     }
 
+    .lake-memory.feature-story {
+      grid-template-columns: minmax(340px, 1.12fr) minmax(0, .88fr);
+    }
+
     .lake-photo {
       margin: 0;
       padding: 10px 10px 34px;
@@ -1080,6 +1084,10 @@
       object-fit: cover;
       display: block;
       border-radius: 3px;
+    }
+
+    .lake-memory.feature-story .lake-photo img {
+      min-height: 420px;
     }
 
     .lake-photo figcaption {
@@ -1146,14 +1154,8 @@
       align-items: stretch;
     }
 
-    .bear-art {
-      min-height: 360px;
-      border: 4px solid rgba(33, 49, 44, .24);
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg, rgba(23, 31, 28, .04), rgba(23, 60, 51, .22)),
-        url("solon-springs-black-bear-stories.jpg") center / cover;
-      box-shadow: inset 0 0 0 2px rgba(255, 248, 232, .5), 0 8px 0 rgba(33, 49, 44, .12);
+    .bear-feature.text-only {
+      grid-template-columns: 1fr;
     }
 
     .bear-stories {
@@ -1311,6 +1313,10 @@
       .arrival-board,
       .call-grid,
       .big-choice {
+        grid-template-columns: 1fr;
+      }
+
+      .lake-memory.feature-story {
         grid-template-columns: 1fr;
       }
 
@@ -1603,11 +1609,10 @@
           <p class="lede">Greg and Tim heading back to see Mom. Christina seeing this part of the country and the family cabin for the first time. Aiden back to see Grandma. New memories are in here too: Roman and Aiden on the lake, black bears, Uncle Todd, and the hornets-and-BB-gun legend.</p>
         </div>
         <figure class="scene-art">
-          <img src="solon-springs-hornets-bb-gun-rifle-illustration.jpg" alt="Playful illustration of young Aiden chopping a hornets-nest tree while Roman holds an old kids BB gun rifle nearby.">
+          <img src="solon-springs-black-bear-stories.jpg" alt="Playful illustrated black bear cabin memory scene with boys on bicycles, bears, pine trees, cabin lights, and lake country.">
         </figure>
       </div>
-      <div class="bear-feature" aria-label="Black bear cabin stories">
-        <div class="bear-art" role="img" aria-label="Illustrated black bear memory scene with boys on bicycles, a baby black bear, a big bear by the outhouse, pine trees, cabin lights, and lake country."></div>
+      <div class="bear-feature text-only" aria-label="Black bear cabin stories">
         <div class="bear-stories">
           <article class="bear-story">
             <h3>Roman + Aiden's Bear Ride</h3>
@@ -1619,7 +1624,26 @@
           </article>
         </div>
       </div>
-      <div class="lake-memory text-only" aria-label="Aiden hornets and BB-gun memory">
+      <div class="lake-memory photo-memory" aria-label="Roman and Aiden lake photo memory">
+        <figure class="lake-photo">
+          <img src="roman-aiden-lake-tube.jpg" alt="Roman and Aiden as kids smiling on a blue inflatable tube on the lake.">
+          <figcaption>Roman + Aiden, lake days</figcaption>
+        </figure>
+        <article class="lake-story">
+          <h3>Roman + Aiden on the Lake</h3>
+          <p>The lake photo stays in the memories, just not as the opener: Roman and Aiden as little kids on the blue tube, smiling in the middle of all that dark lake water.</p>
+          <div class="mini-scene" aria-hidden="true">
+            <span>Blue tube</span>
+            <span>Lake days</span>
+            <span>Summer fun</span>
+          </div>
+        </article>
+      </div>
+      <div class="lake-memory feature-story" aria-label="Aiden hornets and BB-gun memory">
+        <figure class="lake-photo">
+          <img src="solon-springs-hornets-bb-gun-rifle-illustration.jpg" alt="Playful illustration of young Aiden chopping a hornets-nest tree while Roman holds an old kids BB gun rifle nearby.">
+          <figcaption>Aiden vs. hornets. Roman vs. aim.</figcaption>
+        </figure>
         <article class="lake-story">
           <h3>Hornets, Hatchets + BBs</h3>
           <p>Aiden remembers being about eight, taking on a tree because a hornets nest had tried to light him up. While he was chopping, Roman, probably around twelve, picked that exact moment for BB-gun target practice and caught Aiden in the hand. Classic cabin logic: one kid versus hornets, one kid versus aim, everyone gets a story.</p>
