@@ -1,4 +1,4 @@
-const CACHE_VERSION = "solon-springs-2026-06-30-ea6f117";
+const CACHE_VERSION = "solon-springs-2026-07-02-owatonna-launch";
 
 self.addEventListener("install", event => {
   event.waitUntil(self.skipWaiting());
