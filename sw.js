@@ -1,4 +1,4 @@
-const CACHE_VERSION = "solon-springs-2026-07-02-tobies-hinckley";
+const CACHE_VERSION = "solon-springs-2026-07-02-cabin-arrival";
 
 self.addEventListener("install", event => {
   event.waitUntil(self.skipWaiting());
